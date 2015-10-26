@@ -292,11 +292,12 @@ create_tables() {
 
     FILE="$(mktemp 'XXXXXXXXXX.sql')" || { echo "Failed to create temp file"; exit 1; }
     SEQCOUNT=0
+    echo "Selecting 3000 times from order_seq to get value to 3001..."
     while [ $SEQCOUNT -lt 3000 ]; do
         echo "select next value for order_seq from dual;" >> $FILE
         let SEQCOUNT++
     done
-    command_exec "$NUODB_SQL ${DB_NAME}@${DB_HOST}:${DB_PORT} --user ${DB_USER} --password ${DB_PASSWORD} --schema ${DB_NAME} --file ${FILE}"
+    command_exec "$NUODB_SQL ${DB_NAME}@${DB_HOST}:${DB_PORT} --user ${DB_USER} --password ${DB_PASSWORD} --schema ${DB_NAME} --file ${FILE}" > /dev/null 2>&1
     rm -f $FILE
 }
 
