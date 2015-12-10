@@ -69,7 +69,8 @@ with closing(open(filename, 'r')) as mix_file:
         if steadystate:
             V3_txresult = vars[2]
             if V2_txkey not in transaction_name:
-                print 'Invalid transaction key, ignoring line: %s' % line
+                if not V2_txkey == "START":
+                    print 'Invalid transaction key, ignoring line: %s' % line
                 continue
             if V3_txresult not in result_name:
                 print 'Invalid result flag, ignoring line: %s' % line
