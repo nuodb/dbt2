@@ -1,0 +1,7 @@
+# Simple single-host testcase to validate environment
+export TC_WAREHOUSES=5
+export TC_NUM_DB_CONNS_PER_TE=8
+export TC_NUM_TES=1
+export TC_NUM_SMS=1
+export TC_SINGLE_HOST=1
+export TC_STORAGEGROUPS=false

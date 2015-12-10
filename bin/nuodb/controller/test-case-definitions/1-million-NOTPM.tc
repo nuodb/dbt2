@@ -1,0 +1,10 @@
+# This is the testcase definition which NuoDB used to achieve 1,026,929 NOTPM with NuoDB pre-release 2.3.
+export TC_WAREHOUSES=400
+export TC_NUM_DB_CONNS_PER_TE=64
+export TC_NUM_TES=40
+export TC_NUM_SMS=10
+export TC_STORAGEGROUPS=true
+export TC_WARMUP_DB=true
+export TC_NUM_PARTITIONS=40
+export TC_TE_MEM_SETTING=24g
+export TC_SM_MEM_SETTING=24g

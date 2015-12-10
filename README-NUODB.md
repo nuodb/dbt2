@@ -41,6 +41,14 @@ To create a redistributable package:
 ```bash
 make package
 ```
+
+## New Benchmark Controller usage
+
+NuoDB has created a set of scripts and configuration files to wrap
+dbt2 and simplify test setup and execution.  The new tool is in
+bin/nuodb/controller.  Instructions are in the README.txt file there.
+The former way for running dbt2 is described below.
+
 ## Before Proceeding
 
 Modify the bin/nuodb/dbt2-nuodb-profile file so that your NuoDB installation

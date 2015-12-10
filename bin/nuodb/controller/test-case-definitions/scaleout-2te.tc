@@ -1,0 +1,4 @@
+export TC_WAREHOUSES=20
+export TC_NUM_DB_CONNS_PER_TE=64
+export TC_NUM_TES=2
+export TC_NUM_SMS=1
