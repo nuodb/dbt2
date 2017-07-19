@@ -99,7 +99,7 @@ with closing(open(filename, 'r')) as mix_file:
                 rampup_start = V1_timestamp
                 continue
 
-if steadystate_start<= rampup_start:
+if steadystate_start < rampup_start:
     print 'START market not found in: %s' % filename
     sys.exit(1)
 if steadystate_start >= steadystate_end:
