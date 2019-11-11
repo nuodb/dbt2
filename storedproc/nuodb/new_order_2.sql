@@ -6,14 +6,14 @@ CREATE PROCEDURE new_order_2 (in_w_id INT,
 	                      in_d_id INT,
 	                      in_ol_i_id INT,
 	                      in_ol_quantity INT,
-	                      in_i_price NUMERIC,
+	                      in_i_price NUMERIC(18, 6),
 	                      in_i_name TEXT,
 	                      in_i_data TEXT,
 	                      in_ol_o_id INT,
-	                      in_ol_amount NUMERIC,
+	                      in_ol_amount NUMERIC(18, 6),
 	                      in_ol_supply_w_id INT,
 	                      in_ol_number INT,
-                              out out_s_quantity INT)
+                          out out_s_quantity INT)
 
 AS
 
