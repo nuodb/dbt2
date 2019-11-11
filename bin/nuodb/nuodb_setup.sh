@@ -1,5 +1,10 @@
 #!/bin/sh
-. ./../../.travis_env
+
+NUODB_HOME=/opt/nuodb
+NUODB_DB=dbt2
+NUODB_USERNAME=dbt2
+NUODB_PASSWORD=dbt2
+NUODB_SCHEMA=dbt2
 
 [ -n "$NUO_VERSION" ] || { echo "Missing version"; exit 1; }
 
