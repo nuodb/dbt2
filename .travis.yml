@@ -1,29 +1,28 @@
 language: java
 
 jdk:
-  - openjdk7
+  - openjdk11
 
 env:
-  - NUODB_HOME=/opt/nuodb NUODB_INCLUDE_DIR=/opt/nuodb/include NUODB_LIB_DIR=/opt/nuodb/lib64
+  global:
+    - NUODB_HOME=/opt/nuodb
+    - NUODB_INCLUDE_DIR=/opt/nuodb/include
+    - NUODB_LIB_DIR=/opt/nuodb/lib64
+    - TZ=America/New_York
+    - NUO_VERSION=4.0.1.1
 
 notifications:
   recipients:
     - drivers@nuodb.com
 
 before_install:
-  - wget -q http://www.nuodb.com/latest/releases/nuodb-1.1.1.linux.x64.deb --output-document=/var/tmp/nuodb.deb
-  - sudo dpkg -i /var/tmp/nuodb.deb
-  - sleep 2
-  - ${NUODB_HOME}/bin/nuodb --chorus test --password bar --dba-user dba --dba-password goalie --verbose debug --archive /var/tmp/nuodb --initialize --force &
-  - sleep 2
-  - ${NUODB_HOME}/bin/nuodb --chorus test --password bar --dba-user dba --dba-password goalie &
-  - sleep 2
+  - ./bin/nuodb/nuodb_setup.sh
 
 install:
   - true
 
 script:
-  - cmake -G "Unix Makefiles" -DDBMS=nuodb -DCMAKE_INSTALL_PREFIX:PATH=/opt/local/dbt -DCMAKE_BUILD_TYPE=Debug
+  - cmake -G "Unix Makefiles" -DDBMS=nuodb -DCMAKE_INSTALL_PREFIX:PATH=/opt/local/dbt -DCMAKE_BUILD_TYPE=Debug -DNUODB_INCLUDE_DIR=${NUODB_INCLUDE_DIR}
   - sudo make package install
 
 after_script:

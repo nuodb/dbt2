@@ -61,18 +61,18 @@ AS
   VAR out_c_last;
 
   VAR tmp_ol_supply_w_id;
-  VAR tmp_ol_quantity;
+  VAR tmp_ol_quantity int;
   VAR out_d_next_o_id;
-  VAR tmp_i_id;
+  VAR tmp_i_id int;
 
-  VAR tmp_s_quantity;
+  VAR tmp_s_quantity int;
 
   VAR out_w_tax;
   VAR out_d_tax;
   VAR out_c_discount;
-  VAR tmp_i_price;
-  VAR tmp_ol_amount;
-  VAR tmp_total_amount;
+  VAR tmp_i_price real;
+  VAR tmp_ol_amount real;
+  VAR tmp_total_amount real;
 
   VAR o_id;
 
@@ -115,13 +115,13 @@ AS
   VALUES (out_d_next_o_id, tmp_d_id, tmp_w_id);
 
   INSERT INTO orders (o_id, o_d_id, o_w_id, o_c_id, o_entry_d,
-	                    o_carrier_id, o_ol_cnt, o_all_local)
+                       o_carrier_id, o_ol_cnt, o_all_local)
   VALUES (out_d_next_o_id, tmp_d_id, tmp_w_id, tmp_c_id,
-	        now(), NULL, tmp_o_ol_cnt, tmp_o_all_local);
+           now(), NULL, tmp_o_ol_cnt, tmp_o_all_local);
 
   tmp_total_amount = 0;
 
-  VAR counter = 0;
+  VAR counter int = 0;
   WHILE (counter < 15)
     IF (tmp_o_ol_cnt > counter )
 
@@ -182,15 +182,14 @@ AS
                                             WHERE i_id = tmp_i_id);
 
       IF (tmp_i_price > 0 )
-	  	tmp_ol_amount = tmp_i_price * tmp_ol_quantity;
+         tmp_ol_amount = tmp_i_price * tmp_ol_quantity;
 
-	call new_order_2(tmp_w_id, tmp_d_id, tmp_i_id,
-                    	 tmp_ol_quantity, tmp_i_price,
- 			 tmp_i_name, tmp_i_data,
-  			 out_d_next_o_id, tmp_ol_amount,
-                       	 tmp_ol_supply_w_id, counter + 1, tmp_s_quantity);
-
-	tmp_total_amount = tmp_total_amount + tmp_ol_amount;
+         call new_order_2(tmp_w_id, tmp_d_id, tmp_i_id,
+                          tmp_ol_quantity, tmp_i_price,
+                          tmp_i_name, tmp_i_data,
+                          out_d_next_o_id, tmp_ol_amount,
+                          tmp_ol_supply_w_id, counter + 1, tmp_s_quantity);
+         tmp_total_amount = tmp_total_amount + tmp_ol_amount;
       END_IF;
     ELSE
       BREAK;
