@@ -18,16 +18,16 @@ You will also need a GNU compiler, CMake (the latest version possible).
 The build procedure is simple:
 
 ```bash
-export NUODB_INCLUDE_DIR=/opt/nuodb/include
-export NUODB_LIB_DIR=/opt/nuodb/lib64
-cmake -G "Unix Makefiles" -DDBMS=nuodb
+export NUODB_HOME=/opt/nuodb
+export NUODB_LIB_DIR=$NUODB_HOME/lib64
+cmake -G "Unix Makefiles" -DDBMS=nuodb -DNUODB_INCLUDE_DIR=$NUODB_HOME/include
 make
 ```
 
 If you want to use `make install`, then set your prefix too:
 
 ```bash
-cmake -G "Unix Makefiles" -DDBMS=nuodb -DCMAKE_INSTALL_PREFIX:PATH=/opt/local/dbt -DCMAKE_BUILD_TYPE=Debug
+cmake -G "Unix Makefiles" -DDBMS=nuodb -DCMAKE_INSTALL_PREFIX:PATH=/opt/local/dbt
 ```
 
 To install it locally:
