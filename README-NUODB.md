@@ -18,9 +18,9 @@ You will also need a GNU compiler, CMake (the latest version possible).
 The build procedure is simple:
 
 ```bash
-export NUODB_INCLUDE_DIR=/Users/rbuck/tmp/nuodb/include
-export NUODB_LIB_DIR=/Users/rbuck/tmp/nuodb/lib64
-cmake -G "Unix Makefiles" -DDBMS=nuodb -DCMAKE_BUILD_TYPE=Debug
+export NUODB_INCLUDE_DIR=/opt/nuodb/include
+export NUODB_LIB_DIR=/opt/nuodb/lib64
+cmake -G "Unix Makefiles" -DDBMS=nuodb
 make
 ```
 
@@ -54,7 +54,7 @@ The former way for running dbt2 is described below.
 Modify the bin/nuodb/dbt2-nuodb-profile file so that your NuoDB installation
 location is properly identified:
 
->       : ${NUODB_HOME:="/home/rbuck/tmp/nuodb"}
+>       : ${NUODB_HOME:="/opt/nuodb"}
 
 ## Generate and Load Data
 In order to test you have to generate data files which are imported into NuoDB
@@ -114,11 +114,11 @@ Sample output follows:
         [INFO] Shutting down chorus and monitors
         Domain entry failed: Connection refused, localhost/127.0.0.1:48004
         [INFO]: Starting broker
-        	Execute: java -jar /Users/rbuck/tmp/nuodb/jar/nuoagent.jar --broker --port 48004 --domain domain --password bird --verbose --bin-dir /Users/rbuck/tmp/nuodb/bin --port-range 48010,48999 >> /var/tmp/dbt2/logs/dbt2-broker.log 2>&1 &
+        	Execute: java -jar /opt/nuodb/jar/nuoagent.jar --broker --port 48004 --domain domain --password bird --verbose --bin-dir /opt/nuodb/bin --port-range 48010,48999 >> /var/tmp/dbt2/logs/dbt2-broker.log 2>&1 &
         [INFO] Starting archive manager and recreating database
-        Started: [SM] Roberts-MacBook-Pro-3.local/10.1.37.224:48010 [ pid = 8117 ] ACTIVE
+        Started: [SM] machine.local/10.1.37.224:48010 [ pid = 8117 ] ACTIVE
         [INFO] Starting transaction engine
-        Started: [TE] Roberts-MacBook-Pro-3.local/10.1.37.224:48011 [ pid = 8124 ] ACTIVE
+        Started: [TE] machine.local/10.1.37.224:48011 [ pid = 8124 ] ACTIVE
         DBT-2 test for nuodb started...
 
         DATABASE SYSTEM: localhost
